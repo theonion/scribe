@@ -219,7 +219,9 @@ define([
          * Browsers without the Clipboard API (specifically `ClipboardEvent.clipboardData`)
          * and Safari will execute the second branch here.
          */
-        if (event.clipboardData && !agentIsSafari()) {
+        if (event.clipboardData
+          && (contains(event.clipboardData.types, 'text/html') || !agentIsSafari())
+        ) {
           event.preventDefault();
 
           if (contains(event.clipboardData.types, 'text/html')) {
